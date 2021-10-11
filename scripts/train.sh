@@ -9,13 +9,13 @@ export BERT_VOCAB=https://ai2-s2-research.s3-us-west-2.amazonaws.com/scibert/all
 export BERT_WEIGHTS=https://ai2-s2-research.s3-us-west-2.amazonaws.com/scibert/allennlp_files/scibert_scivocab_uncased.tar.gz
 
 # path to dataset files
-export TRAIN_PATH=data/CSAbstruct/train.jsonl
-export DEV_PATH=data/CSAbstruct/dev.jsonl
-export TEST_PATH=data/CSAbstruct/test.jsonl
+export TRAIN_PATH=discourse_data/$2/train.jsonl
+export DEV_PATH=discourse_data/$2/dev.jsonl
+export TEST_PATH=discourse_data/$2/test.jsonl
 
 # model
-export USE_SEP=true  # true for our model. false for baseline
-export WITH_CRF=false  # CRF only works for the baseline
+export USE_SEP=$3  # true for our model. false for baseline
+export WITH_CRF=$4  # CRF only works for the baseline
 
 # training params
 export cuda_device=0
@@ -35,4 +35,4 @@ export SCI_SUM_FAKE_SCORES=false  # use fake scores for testing
 
 CONFIG_FILE=sequential_sentence_classification/config.jsonnet
 
-python -m allennlp.run train $CONFIG_FILE  --include-package sequential_sentence_classification -s $SERIALIZATION_DIR "$@"
+python -m allennlp.run train $CONFIG_FILE  --include-package sequential_sentence_classification -s $SERIALIZATION_DIR $1
