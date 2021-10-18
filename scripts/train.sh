@@ -22,10 +22,10 @@ export cuda_device=0
 export BATCH_SIZE=4
 export LR=5e-5
 export TRAINING_DATA_INSTANCES=1668
-export NUM_EPOCHS=2
+export NUM_EPOCHS=$5
 
 # limit number of sentneces per examples, and number of words per sentence. This is dataset dependant
-export MAX_SENT_PER_EXAMPLE=10
+export MAX_SENT_PER_EXAMPLE=$6
 export SENT_MAX_LEN=80
 
 # this is for the evaluation of the summarization dataset
@@ -34,5 +34,6 @@ export USE_ABSTRACT_SCORES=false
 export SCI_SUM_FAKE_SCORES=false  # use fake scores for testing
 
 CONFIG_FILE=sequential_sentence_classification/config.jsonnet
+
 
 python -m allennlp.run train $CONFIG_FILE  --include-package sequential_sentence_classification -s $SERIALIZATION_DIR $1
