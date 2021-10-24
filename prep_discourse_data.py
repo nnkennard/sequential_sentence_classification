@@ -58,7 +58,9 @@ def main():
     for subset, examples in examples_by_label.items():
       with open(output_dir + label + '/' + subset + ".jsonl", 'w') as f:
         f.write("\n".join(json.dumps(i) for i in examples))
-
+    with open(output_dir + label + '/all.jsonl', 'w') as f:
+      f.write("\n".join(json.dumps(i) for i in sum(examples_by_label.values(),
+      [])))
 
 if __name__ == "__main__":
   main()
